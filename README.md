@@ -1,4 +1,0 @@
-vim
-===
-
-Trick out vim
