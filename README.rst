@@ -22,3 +22,8 @@ vim.pyflakes
 ------------
 
 Add pyflakes detection globaly for salt (may require installing gvim on some platforms)
+
+vim.absent
+------------
+
+Ensure vim is purged.
