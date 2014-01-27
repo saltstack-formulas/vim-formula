@@ -2,5 +2,5 @@
 
 vim:
   pkg:
-    - installed
+    - removed
     - name: {{ vim.pkg }}
