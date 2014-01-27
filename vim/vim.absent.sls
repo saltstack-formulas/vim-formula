@@ -1,6 +1,6 @@
+{% from "vim/map.jinja" import vim with context %}
+
 vim:
   pkg:
     -purged
-    {% if grains['os_family'] == 'RedHat'%}
-    - name: vim-enhanced
-    {% endif %}
+    - name: {{ vim.pkg }}

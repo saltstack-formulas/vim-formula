@@ -1,29 +1,35 @@
+===
 vim
 ===
 
-Trick out vim
+Trick out vim.
 
-vim
----
+.. note::
+
+    See the full `Salt Formulas installation and usage instructions
+    <http://docs.saltstack.com/topics/conventions/formulas.html>`_.
+
+``vim``
+-------
 
 Install vim
 
-vim.salt
---------
+``vim.salt``
+------------
 
 Add the global plugins for editing sls files
 
-vim.nerdtree
-------------
+``vim.nerdtree``
+----------------
 
 Add nerdtree plugin globally for vim
 
-vim.pyflakes
-------------
+``vim.pyflakes``
+----------------
 
 Add pyflakes detection globaly for salt (may require installing gvim on some platforms)
 
-vim.absent
-------------
+``vim.absent``
+--------------
 
 Ensure vim is purged.
