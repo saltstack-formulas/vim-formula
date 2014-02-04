@@ -5,4 +5,7 @@
     'RedHat': {
         'pkg': 'vim-enhanced',
     },
+    'FreeBSD': {
+        'pkg': 'vim',
+    },
 }, merge=salt['pillar.get']('vim:lookup')) %}
