@@ -1,11 +1,14 @@
 {% set vim = salt['grains.filter_by']({
     'Debian': {
         'pkg': 'vim',
+        'share_dir': '/usr/share/vim/vimfiles',
     },
     'RedHat': {
         'pkg': 'vim-enhanced',
+        'share_dir': '/usr/share/vim/vimfiles',
     },
     'FreeBSD': {
         'pkg': 'vim',
+        'share_dir': '/usr/local/share/vim/vimfiles',
     },
 }, merge=salt['pillar.get']('vim:lookup')) %}
