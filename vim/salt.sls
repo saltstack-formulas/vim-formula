@@ -1,11 +1,9 @@
+{% from "vim/map.jinja" import vim with context %}
+
 include:
   - vim
 
 salt_vimfiles:
   file.recurse:
-    {% if grains.os == "FreeBSD" %}
-    - name: /usr/local/share/vim/vimfiles
-    {% else %}
-    - name: /usr/share/vim/vimfiles
-    {% endif %}
+    - name: {{ vim.share_dir }}
     - source: salt://vim/files/salt
