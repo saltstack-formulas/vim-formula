@@ -1,4 +1,8 @@
 {% set vim = salt['grains.filter_by']({
+    'Arch': {
+        'pkg': 'vim',
+        'share_dir': '/usr/share/vim/vimfiles',
+    },
     'Debian': {
         'pkg': 'vim',
         'share_dir': '/usr/share/vim/vimfiles',
