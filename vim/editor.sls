@@ -1,4 +1,4 @@
-{% from vim/map.jinja import vim with context %}
+{% from "vim/map.jinja" import vim with context %}
 
 include:
   - vim
