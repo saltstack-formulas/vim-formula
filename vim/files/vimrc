@@ -1,0 +1,56 @@
+{% set config   = salt['pillar.get']('vim:config', {}) -%}
+{% set settings = salt['pillar.get']('vim:settings', {}) -%}
+{% set mappings = salt['pillar.get']('vim:mappings', {}) -%}
+{% set lets = salt['pillar.get']('vim:lets', {}) -%}
+
+{% macro set_config(parameter, default=None) -%}
+{% set value = config.get(parameter, default) -%}
+{% if value is not none -%}
+{{ parameter }} {{ value }}
+{% endif -%}
+{% endmacro -%}
+
+{% macro set_setting(parameter, default=None) -%}
+{% set value = settings.get(parameter, default) -%}
+{% if value is not none -%}
+set {{ parameter }}={{ value }}
+{% else -%}
+set {{ parameter }}
+{% endif -%}
+{% endmacro -%}
+
+{% macro set_mapping(parameter, default=None) -%}
+{% set value = mappings.get(parameter, default) -%}
+{% if value is not none -%}
+map {{ parameter }} {{ value }}
+{% endif -%}
+{% endmacro -%}
+
+{% macro set_let(parameter, default=None) -%}
+{% set value = lets.get(parameter, default) -%}
+{% if value is not none -%}
+let {{ parameter }} = {{ value }}
+{% endif -%}
+{% endmacro -%}
+
+
+{% if grains['os'] == 'Arch'%}
+{{ set_config('runtime!', 'archlinux.vim') }}
+{% endif %}
+
+{% for parameter in config -%}
+{{ set_config(parameter) }}
+{% endfor -%}
+
+{% for parameter in settings -%}
+{{ set_setting(parameter) }}
+{% endfor -%}
+
+{% for parameter in mappings -%}
+{{ set_mapping(parameter) }}
+{% endfor -%}
+
+{% for parameter in lets -%}
+{{ set_let(parameter) }}
+{% endfor -%}
+
