@@ -10,7 +10,7 @@ vim:
     - source: salt://vim/files/vimrc
     - template: jinja
     - user: root
-    - group: root
+    - group: {{ vim.group }}
     - mode: 644
     - template: jinja
     - makedirs: True
