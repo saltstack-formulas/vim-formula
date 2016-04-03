@@ -2,21 +2,26 @@
     'Arch': {
         'pkg': 'vim',
         'share_dir': '/usr/share/vim/vimfiles',
+        'group': 'root',
     },
     'Debian': {
         'pkg': 'vim',
         'share_dir': '/usr/share/vim/vimfiles',
+        'group': 'root',
     },
     'RedHat': {
         'pkg': 'vim-enhanced',
         'share_dir': '/usr/share/vim/vimfiles',
+        'group': 'root',
     },
     'Suse': {
         'pkg': 'vim',
         'share_dir': '/usr/share/vim/site',
+        'group', 'root',
     },
     'FreeBSD': {
         'pkg': 'vim',
         'share_dir': '/usr/local/share/vim/vimfiles',
+        'group': 'wheel',
     },
 }, merge=salt['pillar.get']('vim:lookup')) %}
