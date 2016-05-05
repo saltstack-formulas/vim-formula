@@ -4,7 +4,7 @@ vim:
   pkg.installed:
     - name: {{ vim.pkg }}
 
-/etc/vimrc:
+{{ vim.config_root }}/vimrc:
   file:
     - managed
     - source: salt://vim/files/vimrc
