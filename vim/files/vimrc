@@ -39,6 +39,10 @@ let {{ parameter }} = {{ value }}
 {{ set_config('runtime!', 'archlinux.vim') }}
 {% endif %}
 
+{% if grains['os'] == 'Debian'%}
+{{ set_config('runtime!', 'debian.vim') }}
+{% endif %}
+
 {% for parameter in config -%}
 {{ set_config(parameter) }}
 {% endfor -%}
