@@ -1,4 +1,5 @@
 vim:
+  managed_vimrc: true
   allow_localrc: false
   config:
     syntax: 'on'

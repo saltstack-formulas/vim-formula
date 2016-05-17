@@ -4,9 +4,9 @@ vim:
   pkg.installed:
     - name: {{ vim.pkg }}
 
+{% if salt['pillar.get']('vim:managed_vimrc', True) == True %}
 {{ vim.config_root }}/vimrc:
-  file:
-    - managed
+  file.managed:
     - source: salt://vim/files/vimrc
     - template: jinja
     - user: root
@@ -18,4 +18,4 @@ vim:
       - pkg: vim
     - defaults:
         config_root: {{ vim.config_root }}
-
+{% endif %}
