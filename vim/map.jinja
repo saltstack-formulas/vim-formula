@@ -28,5 +28,11 @@
         'share_dir': '/usr/local/share/vim/vimfiles',
         'group': 'wheel',
         'config_root': '/etc',
+        },
+    'Gentoo': {
+        'pkg': 'app-editors/vim',
+        'share_dir': '/usr/share/vim/vimfiles',
+        'group': 'wheel',
+        'config_root': '/etc',
     },
 }, merge=salt['pillar.get']('vim:lookup')) %}
