@@ -6,6 +6,11 @@
         'config_root': '/etc',
     },
     'Debian': {
+        'alternatives': {
+            'link': '/usr/bin/editor',
+            'path': '/usr/bin/vim.basic',
+            'priority': 100,
+        },
         'pkg': 'vim',
         'share_dir': '/usr/share/vim/vimfiles',
         'group': 'root',
