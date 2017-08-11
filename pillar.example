@@ -5,6 +5,17 @@ vim:
     syntax: 'on'
     colors: desert
 
+    # Config options can be nested
+    ia:
+      marco: macro
+
+    autocmd:
+      FileType:
+        sls: 'setlocal tabstop=2 softtabstop=2 shitfwidth=2'
+      BufRead,BufNewFile:
+        /etc/salt/*.conf: 'set filetype=sls'
+        /srv/*.map: 'set filetype=sls'
+
   settings:
     et:
     cin:
