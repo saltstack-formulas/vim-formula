@@ -42,24 +42,33 @@ let {{ parameter }} = {{ value }}
 {{ set_config('runtime!', 'debian.vim') }}
 {% endif -%}
 
+{%- if config %}
 {% for parameter in config -%}
 {{ set_config(parameter) }}
-{% endfor -%}
+{%- endfor %}
+{% endif -%}
 
+{%- if settings %}
 {% for parameter in settings -%}
 {{ set_setting(parameter) }}
-{% endfor -%}
+{%- endfor %}
+{% endif -%}
 
+{%- if mappings %}
 {% for parameter in mappings -%}
 {{ set_mapping(parameter) }}
-{% endfor -%}
+{%- endfor %}
+{% endif -%}
 
+{%- if lets %}
 {% for parameter in lets -%}
 {{ set_let(parameter) }}
-{% endfor -%}
+{%- endfor %}
+{% endif -%}
 
-{% if allow_localrc == True -%}
+{%- if allow_localrc == True %}
 if filereadable("{{ config_root }}/vimrc.local")
     source {{ config_root }}/vimrc.local
 endif
-{% endif %}
+{% endif -%}
+
