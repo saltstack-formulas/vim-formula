@@ -1,6 +1,18 @@
 vim:
   managed_vimrc: true
-  allow_localrc: false
+
+vim_config:
+  plugins: 
+    - sheerun/vim-polyglot
+    - 
+      name: gko/vim-coloresque
+      options: 
+        for: 
+          - css
+          - html
+          - sass
+          - less
+
   config:
     syntax: 'on'
     colors: desert
@@ -32,12 +44,16 @@ vim:
     swapsync: ''
 
   mappings:
-    <C-u>: :tabp<enter>
-    <C-i>: :tabn<enter>
-    <C-J>: <C-W>j
-    <C-K>: <C-W>k
-    <C-H>: <C-W>h
-    <C-L>: <C-W>l
+    - 
+      from: <C-u>
+      mode: nnoremap
+      to: ":tabp<enter>"
+    - 
+      from: <C-v>
+      mode: nmap
+      to: ":tabps<enter>"
+    - 
+      <C-u>: ":tabp<enter>"
 
   lets:
     &colorcolumn: join(range(121,121),",")

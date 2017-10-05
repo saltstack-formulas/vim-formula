@@ -1,0 +1,14 @@
+vim:
+  pkgs:
+    - vim
+  vim_config: /etc/vimrc
+  vim_config_src: salt://vim/files/vimrc
+  vim_config_user: root
+  vim_config_group: root
+  vim_config_mode: '644'
+  vim_share_dir: /usr/share/vim/vimfiles
+  vim_plugin_dir: plugged
+  vim_plugin_manager_file: autoload/plug.vim
+  users: {}
+
+vim_config: {}

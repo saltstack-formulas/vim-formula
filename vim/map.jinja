@@ -1,49 +1,36 @@
-{% set vim = salt['grains.filter_by']({
-    'Arch': {
-        'pkg': 'vim',
-        'share_dir': '/usr/share/vim/vimfiles',
-        'group': 'root',
-        'config_root': '/etc',
-    },
+{% import_yaml "vim/defaults.yaml" as default_settings %}
+
+{% set os_family_map = salt['grains.filter_by']({
     'Debian': {
         'alternatives': {
             'link': '/usr/bin/editor',
             'path': '/usr/bin/vim.basic',
             'priority': 100,
         },
-        'pkg': 'vim',
-        'share_dir': '/usr/share/vim/vimfiles',
-        'group': 'root',
-        'config_root': '/etc/vim',
+        'vim_config': '/etc/vim/vimrc',
     },
     'OpenBSD': {
-        'pkg': 'vim--no_x11',
-        'share_dir': '/usr/local/share/vim/vimfiles',
-        'group': 'wheel',
-        'config_root': '/etc',
+        'pkgs': ['vim--no_x11'],
+        'vim_share_dir': '/usr/local/share/vim/vimfiles',
+        'vim_config_group': 'wheel',
     },
     'RedHat': {
-        'pkg': 'vim-enhanced',
-        'share_dir': '/usr/share/vim/vimfiles',
-        'group': 'root',
-        'config_root': '/etc',
+        'pkgs': ['vim-enhanced'],
     },
     'Suse': {
-        'pkg': 'vim',
-        'share_dir': '/usr/share/vim/site',
-        'group': 'root',
-        'config_root': '/etc',
+        'vim_share_dir': '/usr/share/vim/site',
     },
     'FreeBSD': {
-        'pkg': 'vim',
-        'share_dir': '/usr/local/share/vim/vimfiles',
-        'group': 'wheel',
-        'config_root': '/etc',
+        'vim_share_dir': '/usr/local/share/vim/vimfiles',
+        'vim_config_group': 'wheel',
         },
     'Gentoo': {
-        'pkg': 'app-editors/vim',
-        'share_dir': '/usr/share/vim/vimfiles',
-        'group': 'wheel',
-        'config_root': '/etc',
+        'pkgs': ['app-editors/vim'],
+        'vim_config_group': 'wheel',
     },
-}, merge=salt['pillar.get']('vim:lookup')) %}
+}, grain="os_family", merge=salt['pillar.get']('vim:lookup')) %}
+
+{% do default_settings.vim.update(os_family_map) %}
+
+{% set vim = salt['pillar.get']('vim', default=default_settings.vim, merge=True) %}
+{% set vim_config = salt['pillar.get']('vim_config', default=default_settings.vim_config, merge=True) %}

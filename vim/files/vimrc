@@ -1,8 +1,11 @@
-{% set config   = salt['pillar.get']('vim:config', {}) -%}
-{% set settings = salt['pillar.get']('vim:settings', {}) -%}
-{% set mappings = salt['pillar.get']('vim:mappings', {}) -%}
-{% set lets = salt['pillar.get']('vim:lets', {}) -%}
-{% set allow_localrc = salt['pillar.get']('vim:allow_localrc', {}) -%}
+{% from "vim/map.jinja" import vim_config with context -%}
+{% from "vim/map.jinja" import vim with context -%}
+
+{% set plugins = vim_config.get('plugins', {}) -%}
+{% set config   = vim_config.get('config', {}) -%}
+{% set settings = vim_config.get('settings', {}) -%}
+{% set mappings = vim_config.get('mappings', {}) -%}
+{% set lets = vim_config.get('lets', {}) -%}
 
 {% macro set_config(parameter, default=None) -%}
 {% set value = config.get(parameter, default) -%}
@@ -13,17 +16,25 @@
 
 {% macro set_setting(parameter, default=None) -%}
 {% set value = settings.get(parameter, default) -%}
-{% if value is not none -%}
+{% if value is iterable and value is not string -%}
+set {{ parameter }}=
+{%- for item in value -%}
+{{ item }}{{ "," if not loop.last else "" }}
+{%- endfor -%}
+{% elif value is not none -%}
 set {{ parameter }}={{ value }}
 {% else -%}
 set {{ parameter }}
 {% endif -%}
 {% endmacro -%}
 
-{% macro set_mapping(parameter, default=None) -%}
-{% set value = mappings.get(parameter, default) -%}
-{% if value is not none -%}
-map {{ parameter }} {{ value }}
+{% macro render_mapping(parameter, default=None) -%}
+{% if parameter | length > 1 -%}
+{{ parameter.get('mode', 'map') }} {{ parameter.from }} {{ parameter.to }}
+{% else -%}
+{% for key, value in parameter.items() -%}
+map {{ key }} {{ value }}
+{% endfor -%}
 {% endif -%}
 {% endmacro -%}
 
@@ -34,6 +45,16 @@ let {{ parameter }} = {{ value }}
 {% endif -%}
 {% endmacro -%}
 
+{% macro render_plugin(plugin, default=None) -%}
+{% if plugin is string -%}
+Plug '{{ plugin }}'
+{% elif plugin is mapping -%}
+{% set options = plugin.get('options', {}) -%}
+Plug '{{ plugin.name }}', {{ options }}
+{% endif -%}
+{% endmacro -%}
+
+
 {% if grains['os'] == 'Arch' -%}
 {{ set_config('runtime!', 'archlinux.vim') }}
 {% endif -%}
@@ -41,6 +62,26 @@ let {{ parameter }} = {{ value }}
 {% if grains['os'] == 'Debian' -%}
 {{ set_config('runtime!', 'debian.vim') }}
 {% endif -%}
+
+let vimplug_exists=expand('{{vim_share_dir + "/" + vim.vim_plugin_manager_file}}')
+
+if !filereadable(vimplug_exists)
+  echo "Installing Vim-Plug"
+  echo ""
+  silent !\curl -fLo {{vim_share_dir + "/" + vim.vim_plugin_manager_file}} --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+  let g:not_finish_vimplug = "yes"
+
+  autocmd VimEnter * PlugInstall
+endif
+
+""" Plugins 
+call plug#begin('{{vim_share_dir + "/" + vim.vim_plugin_dir}}')
+
+{% for plugin in plugins -%}
+{{ render_plugin(plugin) }}
+{% endfor -%}
+
+call plug#end()
 
 {% for parameter in config -%}
 {{ set_config(parameter) }}
@@ -51,15 +92,9 @@ let {{ parameter }} = {{ value }}
 {% endfor -%}
 
 {% for parameter in mappings -%}
-{{ set_mapping(parameter) }}
+{{ render_mapping(parameter) }}
 {% endfor -%}
 
 {% for parameter in lets -%}
 {{ set_let(parameter) }}
 {% endfor -%}
-
-{% if allow_localrc == True -%}
-if filereadable("{{ config_root }}/vimrc.local")
-    source {{ config_root }}/vimrc.local
-endif
-{% endif %}

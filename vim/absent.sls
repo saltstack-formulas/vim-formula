@@ -1,5 +1,5 @@
 {% from "vim/map.jinja" import vim with context %}
 
-vim:
+remove vim:
   pkg.removed:
-    - name: {{ vim.pkg }}
+    - pkgs: {{ vim.pkgs }}
