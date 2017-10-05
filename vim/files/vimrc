@@ -26,7 +26,7 @@
 set {{ value }}
 {% else -%}
 {% for key, val in value.items() -%}
-{% if val is iterable and val is not mapping -%}
+{% if val is iterable and val is not mapping and val is not string -%}
 set {{ key }}=
 {%- for item in val -%}
 {{ item }}{{ "," if not loop.last else "" }}
@@ -75,12 +75,17 @@ Plug '{{ plugin.name }}', {{ options }}
 {{ set_config('runtime!', 'debian.vim') }}
 {% endif -%}
 
+if has('vim_starting')
+    set nocompatible
+endif
+
 let vimplug_exists=expand('{{vim.share_dir + "/" + vim.plugin_manager_file}}')
 
 if !filereadable(vimplug_exists)
   echo "Installing Vim-Plug"
   echo ""
   silent !\curl -fLo {{vim.share_dir + "/" + vim.plugin_manager_file}} --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+  silent !\chmod -R 755 {{vim.share_dir}}
   let g:not_finish_vimplug = "yes"
 
   autocmd VimEnter * PlugInstall
