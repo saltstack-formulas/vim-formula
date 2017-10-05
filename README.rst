@@ -4,6 +4,8 @@ vim
 
 Trick out vim.
 
+See the pillar.example and vim/defaults.yaml for most configuration options
+
 .. note::
 
     See the full `Salt Formulas installation and usage instructions
@@ -20,20 +22,10 @@ Available states
 
 Install vim
 
-``vim.salt``
-------------
+``vim.config``
+--------------
 
-Add the global plugins for editing sls files
-
-``vim.nerdtree``
-----------------
-
-Add nerdtree plugin globally for vim
-
-``vim.pyflakes``
-----------------
-
-Add pyflakes detection globaly for salt (may require installing gvim on some platforms)
+Install vim config (global by default)
 
 ``vim.absent``
 --------------

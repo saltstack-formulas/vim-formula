@@ -1,13 +1,16 @@
 vim:
-  managed_vimrc: true
+  users:
+    vagrant:
+      vim_config: /home/vagrant/.vimrc
+      vim_config_mode: '600'
 
 vim_config:
-  plugins: 
+  plugins:
     - sheerun/vim-polyglot
-    - 
+    -
       name: gko/vim-coloresque
-      options: 
-        for: 
+      options:
+        for:
           - css
           - html
           - sass
@@ -21,7 +24,10 @@ vim_config:
     et:
     cin:
     ru:
-    bs: indent,eol,start
+    bs:
+      - indent
+      - eol
+      - start
     showcmd:
     showmatch:
     smartcase:
@@ -44,17 +50,16 @@ vim_config:
     swapsync: ''
 
   mappings:
-    - 
+    -
       from: <C-u>
       mode: nnoremap
       to: ":tabp<enter>"
-    - 
+    -
       from: <C-v>
       mode: nmap
       to: ":tabps<enter>"
-    - 
+    -
       <C-u>: ":tabp<enter>"
 
   lets:
     &colorcolumn: join(range(121,121),",")
-
