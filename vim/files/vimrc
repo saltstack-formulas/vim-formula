@@ -1,35 +1,47 @@
-{% from "vim/map.jinja" import vim_config with context -%}
-{% from "vim/map.jinja" import vim with context -%}
-
 {% set plugins = vim_config.get('plugins', {}) -%}
 {% set config   = vim_config.get('config', {}) -%}
 {% set settings = vim_config.get('settings', {}) -%}
 {% set mappings = vim_config.get('mappings', {}) -%}
 {% set lets = vim_config.get('lets', {}) -%}
 
-{% macro set_config(parameter, default=None) -%}
-{% set value = config.get(parameter, default) -%}
-{% if value is not none -%}
-{{ parameter }} {{ value }}
+{% macro set_config(value, default=None) -%}
+{% if value is string %}
+{{ value }}
+{% else -%}
+{% for key, val in value.items() -%}
+{% if val is iterable and val is not mapping and val is not string -%}
+{{ key + " " }}
+{%- for item in val -%}
+{{ item }}{{ " " if not loop.last else "" }}
+{%- endfor -%}
+{% else -%}
+{{ key }} {{ val }}
+{% endif -%}
+{% endfor -%}
 {% endif -%}
 {% endmacro -%}
 
-{% macro set_setting(parameter, default=None) -%}
-{% set value = settings.get(parameter, default) -%}
-{% if value is iterable and value is not string -%}
-set {{ parameter }}=
-{%- for item in value -%}
+{% macro set_setting(value, default=None) -%}
+{% if value is string %}
+set {{ value }}
+{% else -%}
+{% for key, val in value.items() -%}
+{% if val is iterable and val is not mapping -%}
+set {{ key }}=
+{%- for item in val -%}
 {{ item }}{{ "," if not loop.last else "" }}
 {%- endfor -%}
-{% elif value is not none -%}
-set {{ parameter }}={{ value }}
 {% else -%}
-set {{ parameter }}
+set {{ key }}={{ val }}
+{% endif -%}
+{% endfor -%}
 {% endif -%}
 {% endmacro -%}
 
 {% macro render_mapping(parameter, default=None) -%}
-{% if parameter | length > 1 -%}
+{%- if parameter is string -%}
+{{ parameter }}
+{% elif parameter | length > 1 -%}
 {{ parameter.get('mode', 'map') }} {{ parameter.from }} {{ parameter.to }}
 {% else -%}
 {% for key, value in parameter.items() -%}
@@ -63,19 +75,19 @@ Plug '{{ plugin.name }}', {{ options }}
 {{ set_config('runtime!', 'debian.vim') }}
 {% endif -%}
 
-let vimplug_exists=expand('{{vim_share_dir + "/" + vim.vim_plugin_manager_file}}')
+let vimplug_exists=expand('{{vim.share_dir + "/" + vim.plugin_manager_file}}')
 
 if !filereadable(vimplug_exists)
   echo "Installing Vim-Plug"
   echo ""
-  silent !\curl -fLo {{vim_share_dir + "/" + vim.vim_plugin_manager_file}} --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+  silent !\curl -fLo {{vim.share_dir + "/" + vim.plugin_manager_file}} --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
   let g:not_finish_vimplug = "yes"
 
   autocmd VimEnter * PlugInstall
 endif
 
 """ Plugins 
-call plug#begin('{{vim_share_dir + "/" + vim.vim_plugin_dir}}')
+call plug#begin('{{vim.share_dir + "/" + vim.plugin_dir}}')
 
 {% for plugin in plugins -%}
 {{ render_plugin(plugin) }}

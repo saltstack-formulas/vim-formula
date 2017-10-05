@@ -1,8 +1,16 @@
 vim:
   users:
     vagrant:
-      vim_config: /home/vagrant/.vimrc
-      vim_config_mode: '600'
+      vim_config:
+        settings:
+          - tabstop: 2
+          - softabstop: 2
+          - shiftwidth: 2
+          - expandtab
+      vim:
+        share_dir: /home/vagrant/.vim
+        config_file: /home/vagrant/.vimrc
+        config_mode: '600'
 
 vim_config:
   plugins:
@@ -17,39 +25,37 @@ vim_config:
           - less
 
   config:
-    syntax: 'on'
-    colors: desert
+  # config is list of dicts or strings
+    - syntax: 'on'
+    - colorscheme desert
 
   settings:
-    et:
-    cin:
-    ru:
-    bs:
+  # settings is list of dicts or strings
+    # dict containing list
+    - bs:
       - indent
       - eol
       - start
-    showcmd:
-    showmatch:
-    smartcase:
-    incsearch:
-    autowrite:
-    hidden:
-    mouse: a
-    number:
-    backspace: 2
-    noerrorbells:
-    novisualbell:
-    background: dark
-    ai:
-    si:
-    cindent:
-    tabstop: 8
-    softtabstop: 8
-    shiftwidth: 8
-    nowrap:
-    swapsync: ''
+    # string
+    - showcmd
+    - showmatch
+    - smartcase
+    - incsearch
+    # key value dict
+    - mouse: a
+    - number
+    - backspace: 2
+    - tabstop: 8
+    - softtabstop: 8
+    - shiftwidth: 8
+    - nowrap
 
   mappings:
+  # mappings is list of dicts or strings
+    # key value dict (mode defaults to map)
+    -
+      <C-u>: ":tabp<enter>"
+    # more verbose dict
     -
       from: <C-u>
       mode: nnoremap
@@ -58,8 +64,12 @@ vim_config:
       from: <C-v>
       mode: nmap
       to: ":tabps<enter>"
-    -
-      <C-u>: ":tabp<enter>"
+    # string
+    - nnoremap <C-J> <C-W><C-J>
+    - nnoremap <C-K> <C-W><C-K>
+    - nnoremap <C-L> <C-W><C-L>
+    - nnoremap <C-H> <C-W><C-H>
 
   lets:
-    &colorcolumn: join(range(121,121),",")
+  # lets must be key value pairs
+    abc: def

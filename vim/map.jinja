@@ -7,26 +7,26 @@
             'path': '/usr/bin/vim.basic',
             'priority': 100,
         },
-        'vim_config': '/etc/vim/vimrc',
+        'config_file': '/etc/vim/vimrc',
     },
     'OpenBSD': {
         'pkgs': ['vim--no_x11'],
-        'vim_share_dir': '/usr/local/share/vim/vimfiles',
-        'vim_config_group': 'wheel',
+        'share_dir': '/usr/local/share/vim/vimfiles',
+        'config_group': 'wheel',
     },
     'RedHat': {
         'pkgs': ['vim-enhanced'],
     },
     'Suse': {
-        'vim_share_dir': '/usr/share/vim/site',
+        'share_dir': '/usr/share/vim/site',
     },
     'FreeBSD': {
-        'vim_share_dir': '/usr/local/share/vim/vimfiles',
-        'vim_config_group': 'wheel',
+        'share_dir': '/usr/local/share/vim/vimfiles',
+        'config_group': 'wheel',
         },
     'Gentoo': {
         'pkgs': ['app-editors/vim'],
-        'vim_config_group': 'wheel',
+        'config_group': 'wheel',
     },
 }, grain="os_family", merge=salt['pillar.get']('vim:lookup')) %}
 
