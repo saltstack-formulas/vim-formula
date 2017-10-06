@@ -4,7 +4,7 @@
 {% set mappings = vim_config.get('mappings', {}) -%}
 {% set lets = vim_config.get('lets', {}) -%}
 
-{% macro set_config(value, default=None) -%}
+{% macro set_config(value) -%}
 {% if value is string %}
 {{ value }}
 {% else -%}
@@ -21,7 +21,7 @@
 {% endif -%}
 {% endmacro -%}
 
-{% macro set_setting(value, default=None) -%}
+{% macro set_setting(value) -%}
 {% if value is string %}
 set {{ value }}
 {% else -%}
@@ -38,7 +38,7 @@ set {{ key }}={{ val }}
 {% endif -%}
 {% endmacro -%}
 
-{% macro render_mapping(parameter, default=None) -%}
+{% macro render_mapping(parameter) -%}
 {%- if parameter is string -%}
 {{ parameter }}
 {% elif parameter | length > 1 -%}
@@ -68,11 +68,11 @@ Plug '{{ plugin.name }}', {{ options }}
 
 
 {% if grains['os'] == 'Arch' -%}
-{{ set_config('runtime!', 'archlinux.vim') }}
+{{ set_config({'runtime!': 'archlinux.vim'}) }}
 {% endif -%}
 
 {% if grains['os'] == 'Debian' -%}
-{{ set_config('runtime!', 'debian.vim') }}
+{{ set_config({'runtime!': 'debian.vim'}) }}
 {% endif -%}
 
 if has('vim_starting')
