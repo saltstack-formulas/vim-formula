@@ -20,9 +20,8 @@ global vim config:
 {% if salt['pillar.get']('vim_config:plugins', False) %}
 install global vim plugins:
   cmd.run:
-    - name: vim +PlugInstall +qall
-    - user: root
-    - group: root
+    - name: vim +PlugInstall +qall > /dev/null
+    - runas: root
 {% endif %}
 {% endif %}
 
