@@ -28,7 +28,11 @@
         'pkgs': ['app-editors/vim'],
         'config_group': 'wheel',
     },
-}, grain="os_family", merge=salt['pillar.get']('vim:lookup')) %}
+    'default': {}
+  }
+  , grain="os_family"
+  , merge=salt['pillar.get']('vim:lookup'))
+%}
 
 {% do default_settings.vim.update(os_family_map) %}
 
