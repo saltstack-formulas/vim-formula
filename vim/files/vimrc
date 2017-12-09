@@ -4,11 +4,19 @@
 {% set lets = salt['pillar.get']('vim:lets', {}) -%}
 {% set allow_localrc = salt['pillar.get']('vim:allow_localrc', {}) -%}
 
-{% macro set_config(parameter, default=None) -%}
-{% set value = config.get(parameter, default) -%}
-{% if value is not none -%}
-{{ parameter }} {{ value }}
+{% macro set_config(config, prefix='') -%}
+{% for parameter in config | sort -%}
+{% set value = config.get(parameter) -%}
+{% if value is mapping -%}
+{{ set_config(value, prefix=prefix+parameter+' ') }}
+{%- elif value is sequence and value is not string -%}
+{% for item in value -%}
+{{ prefix }}{{ parameter }} {{ item }}
+{% endfor -%}
+{%- elif value is not none -%}
+{{ prefix }}{{ parameter }} {{ value }}
 {% endif -%}
+{% endfor -%}
 {% endmacro -%}
 
 {% macro set_setting(parameter, default=None) -%}
@@ -34,32 +42,39 @@ let {{ parameter }} = {{ value }}
 {% endif -%}
 {% endmacro -%}
 
-{% if grains['os'] == 'Arch' -%}
+{%- if grains['os'] == 'Arch' -%}
 {{ set_config('runtime!', 'archlinux.vim') }}
 {% endif -%}
 
-{% if grains['os'] == 'Debian' -%}
+{%- if grains['os'] == 'Debian' -%}
 {{ set_config('runtime!', 'debian.vim') }}
 {% endif -%}
 
-{% for parameter in config -%}
-{{ set_config(parameter) }}
-{% endfor -%}
+{%- if config -%}
+{{ set_config(config) }}
+{% endif -%}
 
-{% for parameter in settings -%}
+{%- if settings -%}
+{% for parameter in settings | sort -%}
 {{ set_setting(parameter) }}
-{% endfor -%}
+{%- endfor %}
+{% endif -%}
 
-{% for parameter in mappings -%}
+{%- if mappings -%}
+{% for parameter in mappings | sort -%}
 {{ set_mapping(parameter) }}
-{% endfor -%}
+{%- endfor %}
+{% endif -%}
 
-{% for parameter in lets -%}
+{%- if lets -%}
+{% for parameter in lets | sort -%}
 {{ set_let(parameter) }}
-{% endfor -%}
+{%- endfor %}
+{% endif -%}
 
-{% if allow_localrc == True -%}
+{%- if allow_localrc == True %}
 if filereadable("{{ config_root }}/vimrc.local")
     source {{ config_root }}/vimrc.local
 endif
-{% endif %}
+{% endif -%}
+
