@@ -1,0 +1,10 @@
+name: vim
+title: Vim Profile
+maintainer: Nicolas Rodriguez
+copyright: Nicolas Rodriguez
+copyright_email: nicoladmin@free.fr
+license: MIT
+summary: Vim Compliance Profile
+version: 0.1.0
+supports:
+- os-name: debian

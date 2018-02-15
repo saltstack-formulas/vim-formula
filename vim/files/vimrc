@@ -43,11 +43,11 @@ let {{ parameter }} = {{ value }}
 {% endmacro -%}
 
 {%- if grains['os'] == 'Arch' -%}
-{{ set_config('runtime!', 'archlinux.vim') }}
+runtime! archlinux.vim
 {% endif -%}
 
 {%- if grains['os'] == 'Debian' -%}
-{{ set_config('runtime!', 'debian.vim') }}
+runtime! debian.vim
 {% endif -%}
 
 {%- if config -%}

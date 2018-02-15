@@ -1,0 +1,13 @@
+language: ruby
+sudo: required
+cache: bundler
+rvm:
+  - 2.3.5
+services:
+  - docker
+script:
+  - bundle exec kitchen test
+env:
+  matrix:
+    - DISTRIB=debian:jessie/8
+    - DISTRIB=debian:stretch/9
