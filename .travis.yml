@@ -9,5 +9,7 @@ script:
   - bundle exec kitchen test
 env:
   matrix:
+    - DISTRIB=debian:wheezy/7
     - DISTRIB=debian:jessie/8
     - DISTRIB=debian:stretch/9
+    - DISTRIB=ubuntu:xenial/16.04
