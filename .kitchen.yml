@@ -14,8 +14,8 @@ provisioner:
   # Install Salt from official repositories
   salt_install: apt
   salt_version: latest
-  salt_apt_repo: http://repo.saltstack.com/apt/<%= distrib %>/<%= version %>/amd64
-  salt_apt_repo_key: http://repo.saltstack.com/apt/<%= distrib %>/<%= version %>/amd64/latest/SALTSTACK-GPG-KEY.pub
+  salt_apt_repo: https://repo.saltstack.com/apt/<%= distrib %>/<%= version %>/amd64
+  salt_apt_repo_key: https://repo.saltstack.com/apt/<%= distrib %>/<%= version %>/amd64/latest/SALTSTACK-GPG-KEY.pub
 
   # Don't install Chef
   require_chef: false
