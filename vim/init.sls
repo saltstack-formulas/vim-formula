@@ -7,7 +7,7 @@ vim:
 set_editor:
   file.present:
     - name: /etc/profile.d/editor.sh
-    -source: salt://vim/files/editor.sh
+    - source: salt://vim/files/editor.sh
 
 {% if salt['pillar.get']('vim:managed_vimrc', True) == True %}
 {{ vim.config_root }}/vimrc:
