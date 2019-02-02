@@ -5,7 +5,7 @@ vim:
     - name: {{ vim.pkg }}
 
 set_editor:
-  file.present:
+  file.managed:
     - name: /etc/profile.d/editor.sh
     - source: salt://vim/files/editor.sh
 
