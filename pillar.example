@@ -1,3 +1,5 @@
+# -*- coding: utf-8 -*-
+# vim: ft=yaml
 ---
 vim:
   managed_vimrc: true
@@ -18,29 +20,29 @@ vim:
         /srv/*.map: 'set filetype=sls'
 
   settings:
-    et:
-    cin:
-    ru:
+    et: ~
+    cin: ~
+    ru: ~
     bs: indent,eol,start
-    showcmd:
-    showmatch:
-    smartcase:
-    incsearch:
-    autowrite:
-    hidden:
+    showcmd: ~
+    showmatch: ~
+    smartcase: ~
+    incsearch: ~
+    autowrite: ~
+    hidden: ~
     mouse: a
-    number:
+    number: ~
     backspace: 2
-    noerrorbells:
-    novisualbell:
+    noerrorbells: ~
+    novisualbell: ~
     background: dark
-    ai:
-    si:
-    cindent:
+    ai: ~
+    si: ~
+    cindent: ~
     tabstop: 8
     softtabstop: 8
     shiftwidth: 8
-    nowrap:
+    nowrap: ~
     swapsync: ''
 
   mappings:
