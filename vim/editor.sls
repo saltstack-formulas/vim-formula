@@ -3,9 +3,9 @@
 include:
   - vim
 
-{% if vim.has_key('alternatives') %}
+{% if 'alternatives' in vim %}
   {% set alt = vim.alternatives %}
-  {% if alt.has_key('link') and alt.has_key('path') and alt.has_key('priority') %}
+  {% if 'link' in alt and 'path' in alt and 'priority' in alt %}
     {% if salt['alternatives.show_current']('editor') != alt.path %}
 install_editor_alternative:
   alternatives.install:
