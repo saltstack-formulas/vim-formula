@@ -4,11 +4,11 @@ control 'Vim package' do
   title 'should be installed'
 
   package_name =
-    case os[:family]
-    when 'debian', 'suse'
-      'vim'
-    else
+    case platform[:family]
+    when 'redhat', 'fedora'
       'vim-enhanced'
+    else
+      'vim'
     end
 
   describe package(package_name) do
