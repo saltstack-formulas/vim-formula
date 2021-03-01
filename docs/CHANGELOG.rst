@@ -2,6 +2,31 @@
 Changelog
 =========
 
+`0.15.4 <https://github.com/saltstack-formulas/vim-formula/compare/v0.15.3...v0.15.4>`_ (2021-03-01)
+--------------------------------------------------------------------------------------------------------
+
+Bug Fixes
+^^^^^^^^^
+
+
+* **vim/init.sls:** fix full vim installation on suse (\ `bc5283f <https://github.com/saltstack-formulas/vim-formula/commit/bc5283fc135b6a258c0df542fd07d7d339f47993>`_\ )
+
+Continuous Integration
+^^^^^^^^^^^^^^^^^^^^^^
+
+
+* **commitlint:** ensure ``upstream/master`` uses main repo URL [skip ci] (\ `e67e88a <https://github.com/saltstack-formulas/vim-formula/commit/e67e88af4b14970e5e3cb8c8d54a28bd43244b3a>`_\ )
+* **gemfile+lock:** use ``ssf`` customised ``kitchen-docker`` repo [skip ci] (\ `0e62788 <https://github.com/saltstack-formulas/vim-formula/commit/0e627889ca6f0b78592ef0c71331310567415fb6>`_\ )
+* **gitlab-ci:** add ``rubocop`` linter (with ``allow_failure``\ ) [skip ci] (\ `225875d <https://github.com/saltstack-formulas/vim-formula/commit/225875d9b5db83efe5b245c131b4eafc682513bb>`_\ )
+* **kitchen+gitlab-ci:** use latest pre-salted images [skip ci] (\ `9b340fd <https://github.com/saltstack-formulas/vim-formula/commit/9b340fd61380d7cd13fe5c07e0c7c95bdb87ebd3>`_\ )
+* **pre-commit:** update hook for ``rubocop`` [skip ci] (\ `ae2b632 <https://github.com/saltstack-formulas/vim-formula/commit/ae2b6321700c8e8ea365b8d255ac716ebd88ab6d>`_\ )
+
+Tests
+^^^^^
+
+
+* **package_spec:** adjust to work across all platforms (\ `e969de0 <https://github.com/saltstack-formulas/vim-formula/commit/e969de0da918210cd5093ed2dd9e5478e895c95b>`_\ )
+
 `0.15.3 <https://github.com/saltstack-formulas/vim-formula/compare/v0.15.2...v0.15.3>`_ (2020-12-16)
 --------------------------------------------------------------------------------------------------------
 

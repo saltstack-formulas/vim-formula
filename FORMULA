@@ -1,7 +1,7 @@
 name: vim
 os: Debian, Ubuntu, Raspbian, RedHat, Fedora, CentOS, Suse, openSUSE, Gentoo, Funtoo, Arch, Manjaro, Alpine, FreeBSD, OpenBSD, Solaris, SmartOS, MacOS
 os_family: Debian, RedHat, Suse, Gentoo, Arch, Alpine, FreeBSD, OpenBSD, Solaris, MacOS
-version: 0.15.3
+version: 0.15.4
 release: 0
 minimum_version: 2017.7
 summary: Vim formula
