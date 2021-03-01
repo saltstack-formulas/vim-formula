@@ -2,7 +2,7 @@
 
 vim:
   pkg.installed:
-    - name: {{ vim.pkg }}
+    - pkgs: {{ vim.pkg|sequence|yaml }}
 
 {% if salt['pillar.get']('vim:managed_vimrc', True) == True %}
 {{ vim.config_root }}/vimrc:
