@@ -312,6 +312,7 @@ suites:
       state_top:
         base:
           '*':
+            - vim._mapdata
             - vim
       pillars:
         top.sls:
