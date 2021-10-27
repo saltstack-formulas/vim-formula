@@ -2,6 +2,36 @@
 Changelog
 =========
 
+`0.15.5 <https://github.com/saltstack-formulas/vim-formula/compare/v0.15.4...v0.15.5>`_ (2021-10-27)
+--------------------------------------------------------------------------------------------------------
+
+Bug Fixes
+^^^^^^^^^
+
+
+* **init:** remove duplicate ``template: jinja`` line (\ `f83bb1b <https://github.com/saltstack-formulas/vim-formula/commit/f83bb1bf39dbfbb1be917bd45be1081c1545b29c>`_\ ), closes `#52 <https://github.com/saltstack-formulas/vim-formula/issues/52>`_ `#51 <https://github.com/saltstack-formulas/vim-formula/issues/51>`_
+
+Continuous Integration
+^^^^^^^^^^^^^^^^^^^^^^
+
+
+* **3003.1:** update inc. AlmaLinux, Rocky & ``rst-lint`` [skip ci] (\ `60bd7fa <https://github.com/saltstack-formulas/vim-formula/commit/60bd7fab56325c56f68efb69463a7224ecf7e7b3>`_\ )
+* **gemfile+lock:** use ``ssf`` customised ``inspec`` repo [skip ci] (\ `a411383 <https://github.com/saltstack-formulas/vim-formula/commit/a411383a167aa900204f4dc1942a36ea82eed469>`_\ )
+* **kitchen:** move ``provisioner`` block & update ``run_command`` [skip ci] (\ `0a671a7 <https://github.com/saltstack-formulas/vim-formula/commit/0a671a7eee039873b72992b947eec939bae9df8d>`_\ )
+* **kitchen+ci:** update with latest ``3003.2`` pre-salted images [skip ci] (\ `4bcede1 <https://github.com/saltstack-formulas/vim-formula/commit/4bcede1b82c60adbc575ecc8a6ffa050fffbec27>`_\ )
+* **kitchen+ci:** update with latest CVE pre-salted images [skip ci] (\ `12f3254 <https://github.com/saltstack-formulas/vim-formula/commit/12f32543c029e132ba3de785f3a9d39beb4b58e8>`_\ )
+* add ``arch-master`` to matrix and update ``.travis.yml`` [skip ci] (\ `a659899 <https://github.com/saltstack-formulas/vim-formula/commit/a6598996ca647632a12e4441b6df37bf2523972d>`_\ )
+* add Debian 11 Bullseye & update ``yamllint`` configuration [skip ci] (\ `305701d <https://github.com/saltstack-formulas/vim-formula/commit/305701d3a544505831a91d1b18039b0c14369c01>`_\ )
+* **kitchen+ci:** use latest pre-salted images (after CVE) [skip ci] (\ `82c9074 <https://github.com/saltstack-formulas/vim-formula/commit/82c9074bef507b38a2505d8bf828e8303c989836>`_\ )
+* **kitchen+gitlab:** adjust matrix to add ``3003`` [skip ci] (\ `e4e58d4 <https://github.com/saltstack-formulas/vim-formula/commit/e4e58d47779a420bfc283ac26f1c40f6e8804544>`_\ )
+* **kitchen+gitlab:** remove Ubuntu 16.04 & Fedora 32 (EOL) [skip ci] (\ `516042f <https://github.com/saltstack-formulas/vim-formula/commit/516042f710e04971327cffd0c24218ec91ea238d>`_\ )
+
+Tests
+^^^^^
+
+
+* standardise use of ``share`` suite & ``_mapdata`` state [skip ci] (\ `90a3fdc <https://github.com/saltstack-formulas/vim-formula/commit/90a3fdc55d04ffcc4bc750aee26d71f0e831f6b4>`_\ )
+
 `0.15.4 <https://github.com/saltstack-formulas/vim-formula/compare/v0.15.3...v0.15.4>`_ (2021-03-01)
 --------------------------------------------------------------------------------------------------------
 
