@@ -12,7 +12,6 @@ vim:
     - user: root
     - group: {{ vim.group }}
     - mode: 644
-    - template: jinja
     - makedirs: True
     - require:
       - pkg: vim
