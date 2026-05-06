@@ -1,0 +1,84 @@
+---
+name: Test & release
+
+'on':
+  - pull_request
+  - push
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: ${{ github.ref != format('refs/heads/{0}',
+                          github.event.repository.default_branch) }}
+
+jobs:
+  should-run:
+    name: Prep / Should run
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    outputs:
+      should-run: ${{ steps.action.outputs.should-run }}
+    steps:
+      - id: action
+        # yamllint disable-line rule:line-length
+        uses: techneg-it/should-workflow-run@eff19348eb884f57e05bc6f05ae48ece3af14714 # v1.0.1
+  pre-commit:
+    name: Lint / `pre-commit`
+    needs: should-run
+    if: fromJSON(needs.should-run.outputs.should-run)
+    container: techneg/ci-pre-commit:v2.5.40@sha256:08cbbc8b1b3ad6bfc7056494823b0f96faa50ab467649f8d48e8e6d963f11b41
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - run: | # Needed because of bug #2031 in `actions/checkout`
+          git config --global --add safe.directory "$GITHUB_WORKSPACE"
+      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+        with:
+          fetch-depth: 0
+          fetch-tags: true
+          filter: tree:0
+      - name: Export `CI_CACHE_ID` from container
+        run: echo "CI_CACHE_ID=$(cat /.ci_cache_id)" >> $GITHUB_ENV
+      - uses: actions/cache@27d5ce7f107fe9357f9df03efb73ab90386fccae # v5.0.5
+        with:
+          path: ~/.cache/pre-commit
+          key: "${{ env.CI_CACHE_ID }}|\
+                ${{ hashFiles('.pre-commit-config.yaml') }}"
+          restore-keys: |
+            ${{ env.CI_CACHE_ID }}|
+      - name: Build cache
+        run: |
+          pre-commit gc
+          echo "Installing hook environments..."
+          time -f "Hook installation took %E" pre-commit install-hooks
+      - name: Run `pre-commit`
+        run: |
+          pre-commit run --all-files --color always --verbose
+          pre-commit run --color always --hook-stage manual --verbose commitlint-ci
+  results:
+    name: Release / Collect results
+    permissions:
+      contents: write
+      issues: write
+      pull-requests: write
+      checks: read
+    container: techneg/ci-semantic-release:v1.2.38@sha256:292fab25c01c3a8bf6f27be8d397be40c4e95ded49d99d9a5ac47c79cc40d981
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - run: |  # Needed due to bug actions/checkout#2031
+          git config --global --add safe.directory "$GITHUB_WORKSPACE"
+      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+      # yamllint disable-line rule:line-length
+      - uses: poseidon/wait-for-status-checks@899c768d191b56eef585c18f8558da19e1f3e707 # v0.6.0
+        with:
+          ignore: >
+            Release / Collect results
+          ignore_pattern: ^GitLab CI
+          token: ${{ secrets.GITHUB_TOKEN }}
+      - name: Run `semantic-release`
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          MAINTAINER_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          semantic-release --dry-run
+      - run: echo "::notice ::Workflow success!"
