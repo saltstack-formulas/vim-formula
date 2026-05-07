@@ -2,6 +2,64 @@
 Changelog
 =========
 
+`0.15.6 <https://github.com/saltstack-formulas/vim-formula/compare/v0.15.5...v0.15.6>`_ (2026-05-07)
+--------------------------------------------------------------------------------------------------------
+
+Testing
+^^^^^^^
+
+
+* **system.rb:** add support for ``mac_os_x`` [skip ci] (\ `47f4d4b <https://github.com/saltstack-formulas/vim-formula/commit/47f4d4b38464dac50a8854f71dc211e9ba3b14de>`_\ )
+* **system:** add ``build_platform_codename`` [skip ci] (\ `061bb64 <https://github.com/saltstack-formulas/vim-formula/commit/061bb64c7e7688dfa72c7e3a9925fa4b1f882dd6>`_\ )
+
+Continuous Integration
+^^^^^^^^^^^^^^^^^^^^^^
+
+
+* **gemfile:** allow rubygems proxy to be provided as an env var [skip ci] (\ `3fd88ec <https://github.com/saltstack-formulas/vim-formula/commit/3fd88ec149c75af03f7707f2f8dd787eea4bf5ab>`_\ )
+* **kitchen+ci:** update with ``3004`` pre-salted images/boxes [skip ci] (\ `fc13d4a <https://github.com/saltstack-formulas/vim-formula/commit/fc13d4a0056db20c0737ee3c0a512e810fe4bf8b>`_\ )
+* **kitchen+gitlab:** update for new pre-salted images [skip ci] (\ `f383e5b <https://github.com/saltstack-formulas/vim-formula/commit/f383e5be7be80b55fc3b04f506940f7612b7ff22>`_\ )
+* **kitchen+gitlab:** update for new pre-salted images [skip ci] (\ `8572053 <https://github.com/saltstack-formulas/vim-formula/commit/8572053a284d3ee84f709ec1571e77ff0ab01291>`_\ )
+* update ``pre-commit`` configuration inc. for pre-commit.ci [skip ci] (\ `5130db1 <https://github.com/saltstack-formulas/vim-formula/commit/5130db101b1606d4f4b2835746ea843cae4e958a>`_\ )
+* update linters to latest versions [skip ci] (\ `483d079 <https://github.com/saltstack-formulas/vim-formula/commit/483d07933c4b83c6f2cc42d9323b984369562f98>`_\ )
+
+Maintenance
+^^^^^^^^^^^
+
+
+* **copier:** apply template ``copier-ssf-ci`` at v2.10.7 (\ `9139211 <https://github.com/saltstack-formulas/vim-formula/commit/913921120b7918804d239e7dbd991452607f8c7c>`_\ )
+* **gemfile.lock:** update to latest gem versions (2021-W47) [skip ci] (\ `630f8c0 <https://github.com/saltstack-formulas/vim-formula/commit/630f8c008cc6273c4de2ff27e266947365b24687>`_\ )
+* **gemfile.lock:** update to latest gem versions (2021-W49) [skip ci] (\ `3b68732 <https://github.com/saltstack-formulas/vim-formula/commit/3b68732ba205ff4559f3e3500e71495e960c13f2>`_\ )
+* **gemfile.lock:** update to latest gem versions (2021-W50) [skip ci] (\ `c5b8828 <https://github.com/saltstack-formulas/vim-formula/commit/c5b8828b0f666b150913acb6e90fbd6e2ee1b4da>`_\ )
+* **gemfile.lock:** update to latest gem versions (2021-W51) [skip ci] (\ `c0d685b <https://github.com/saltstack-formulas/vim-formula/commit/c0d685bbd791c15b12c1961fa1dd9ecc5d764749>`_\ )
+* **gemfile.lock:** update to latest gem versions (2021-W52) [skip ci] (\ `9ab97cd <https://github.com/saltstack-formulas/vim-formula/commit/9ab97cd72acc9f6cb73dcc94a6692d53a7bafbc8>`_\ )
+* **gemfile.lock:** update to latest gem versions (2022-W01) [skip ci] (\ `36b469b <https://github.com/saltstack-formulas/vim-formula/commit/36b469bb0227ad9debd0139c72f305210f4e8fcd>`_\ )
+* **gemfile.lock:** update to latest gem versions (2022-W02) [skip ci] (\ `8758978 <https://github.com/saltstack-formulas/vim-formula/commit/8758978bc01cd52e093c5098ee0fedfd51b39ba8>`_\ )
+* **gemfile.lock:** update to latest gem versions (2022-W03) [skip ci] (\ `1cf2229 <https://github.com/saltstack-formulas/vim-formula/commit/1cf222953f9b396e51e2b8a4bdabd3988c9918c3>`_\ )
+* **gemfile.lock:** update to latest gem versions (2022-W04) [skip ci] (\ `b4979eb <https://github.com/saltstack-formulas/vim-formula/commit/b4979eb15e47e1b33370ace5fe62aabc25063cb2>`_\ )
+* **gemfile.lock:** update to latest gem versions (2022-W05) [skip ci] (\ `251acb0 <https://github.com/saltstack-formulas/vim-formula/commit/251acb0414047c993838585348e829d2119dd6cb>`_\ )
+* **gemfile.lock:** update to latest gem versions (2022-W06) [skip ci] (\ `64041d3 <https://github.com/saltstack-formulas/vim-formula/commit/64041d377ac92267dce5bf5a09beb9e7e773cb45>`_\ )
+* **gemfile.lock:** update to latest gem versions (2022-W07) [skip ci] (\ `b553e73 <https://github.com/saltstack-formulas/vim-formula/commit/b553e73481f9effe964a043261c10fad7f6c7f69>`_\ )
+* **gemfile.lock:** update to latest gem versions (2022-W08) [skip ci] (\ `bba6090 <https://github.com/saltstack-formulas/vim-formula/commit/bba60909689835e29bafbb5140cbb790fff1a47e>`_\ )
+* **gemfile.lock:** update to latest gem versions (2022-W09) [skip ci] (\ `822fc5a <https://github.com/saltstack-formulas/vim-formula/commit/822fc5a37847605d78b8c78588202598957f3348>`_\ )
+* **gemfile.lock:** update to latest gem versions (2022-W10) [skip ci] (\ `02f358b <https://github.com/saltstack-formulas/vim-formula/commit/02f358b2f5c04a1dc09857a56e4bb0364b0ba03c>`_\ )
+* **gemfile.lock:** update to latest gem versions (2022-W11) [skip ci] (\ `e18503b <https://github.com/saltstack-formulas/vim-formula/commit/e18503bd55383b84a41ab3ba9c2841909aea4da1>`_\ )
+* **gemfile.lock:** update to latest gem versions (2022-W12) [skip ci] (\ `4070061 <https://github.com/saltstack-formulas/vim-formula/commit/40700618d0831eeedac8d25e7b70a20b0514a1e4>`_\ )
+* **gemfile.lock:** update to latest gem versions (2022-W13) [skip ci] (\ `0e2adf5 <https://github.com/saltstack-formulas/vim-formula/commit/0e2adf50b50e3db1db916b7715980756932c3291>`_\ )
+* **gemfile.lock:** update to latest gem versions (2022-W14) [skip ci] (\ `ce2e937 <https://github.com/saltstack-formulas/vim-formula/commit/ce2e9378af92d82857eacb653ad2a3af9b64508d>`_\ )
+* **gemfile.lock:** update to latest gem versions (2022-W15) [skip ci] (\ `80812b2 <https://github.com/saltstack-formulas/vim-formula/commit/80812b2e3318634733114c2ffe186eb4f46279bf>`_\ )
+* **gemfile.lock:** update to latest gem versions (2022-W16) [skip ci] (\ `41691f3 <https://github.com/saltstack-formulas/vim-formula/commit/41691f3fc345f5615f8a343edebad99f79223fc7>`_\ )
+* **gemfile.lock:** update to latest gem versions (2022-W17) [skip ci] (\ `3a9402e <https://github.com/saltstack-formulas/vim-formula/commit/3a9402eedab723e234ec8a18e564331a5d226776>`_\ )
+* **gemfile.lock:** update to latest gem versions (2022-W18) [skip ci] (\ `a626054 <https://github.com/saltstack-formulas/vim-formula/commit/a62605457678112a3139998a58e4aa0506006543>`_\ )
+* **gemfile.lock:** update to latest gem versions (2022-W19) [skip ci] (\ `2bf7459 <https://github.com/saltstack-formulas/vim-formula/commit/2bf74591beb9a2e9e498d478011a9328ef8c3956>`_\ )
+* **gemfile.lock:** update to latest gem versions (2022-W20) [skip ci] (\ `436161e <https://github.com/saltstack-formulas/vim-formula/commit/436161ed587146c711579846a66250462825976b>`_\ )
+* **gemfile.lock:** update to latest gem versions (2022-W22) [skip ci] (\ `f3a2883 <https://github.com/saltstack-formulas/vim-formula/commit/f3a2883ce01960c8c806d126f32ba32c920db9a5>`_\ )
+* **gemfile.lock:** update to latest gem versions (2022-W23) [skip ci] (\ `8d4cd76 <https://github.com/saltstack-formulas/vim-formula/commit/8d4cd761669b508e024b8b13ea9bcb45c6c391e3>`_\ )
+* **gemfile.lock:** update to latest gem versions (2022-W24) [skip ci] (\ `0802ba2 <https://github.com/saltstack-formulas/vim-formula/commit/0802ba292d06fadf94737fedb1f20fb371a3564c>`_\ )
+* **gemfile.lock:** update to latest gem versions (2022-W26) [skip ci] (\ `087f8a5 <https://github.com/saltstack-formulas/vim-formula/commit/087f8a5759d07c458487f0ca1ba223af85484475>`_\ )
+* **gemfile.lock:** update to latest gem versions (2022-W28) [skip ci] (\ `0301278 <https://github.com/saltstack-formulas/vim-formula/commit/0301278268eaceeb04bb4de04d210efc3ae487de>`_\ )
+* **semantic-release:** replace broken ``m2r`` with ``m2r2`` [skip ci] (\ `2cc91c3 <https://github.com/saltstack-formulas/vim-formula/commit/2cc91c366b0a98d79c1406eb04cb9678959636f2>`_\ )
+
 `0.15.5 <https://github.com/saltstack-formulas/vim-formula/compare/v0.15.4...v0.15.5>`_ (2021-10-27)
 --------------------------------------------------------------------------------------------------------
 
